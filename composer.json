@@ -1,7 +1,7 @@
 {
   "name": "hhpack/color",
   "keywords": [ "color", "hack", "console" ],
-  "description": "Stopwatch for Hack",
+  "description": "Color package for Hack",
   "authors": [
     {
       "name": "Noritaka Horio",
