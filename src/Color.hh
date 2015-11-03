@@ -16,7 +16,8 @@ final class Color
 
     public function __construct(
         private string $text,
-        private ForegroundColor $color = ForegroundColor::White
+        private ForegroundColor $color = ForegroundColor::White,
+        private BackgroundColor $backgroundColor = BackgroundColor::Default
     )
     {
     }
@@ -24,6 +25,12 @@ final class Color
     public function color(ForegroundColor $color) : this
     {
         $this->color = $color;
+        return $this;
+    }
+
+    public function background(BackgroundColor $color) : this
+    {
+        $this->backgroundColor = $color;
         return $this;
     }
 
