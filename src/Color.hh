@@ -48,7 +48,7 @@ final class Color
 
     public function display() : void
     {
-        fwrite(STDOUT, $this->format() . PHP_EOL);
+        fwrite(STDOUT, $this->format());
     }
 
     public static function fromFormat(string $format) : this
