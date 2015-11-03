@@ -14,12 +14,15 @@ namespace hhpack\color;
 final class Color
 {
 
+    private Set<StyleAttribute> $styles;
+
     public function __construct(
         private string $format,
         private ForegroundColor $color = ForegroundColor::DefaultColor,
         private BackgroundColor $backgroundColor = BackgroundColor::DefaultColor
     )
     {
+        $this->styles = Set {};
     }
 
     public function color(ForegroundColor $color) : this
@@ -31,6 +34,12 @@ final class Color
     public function background(BackgroundColor $color) : this
     {
         $this->backgroundColor = $color;
+        return $this;
+    }
+
+    public function addStyle(StyleAttribute $style) : this
+    {
+        $this->styles->add($style);
         return $this;
     }
 
@@ -69,7 +78,16 @@ final class Color
     public function applyTo(string $text) : string
     {
         $parts = Set {};
-        $parts->add("\e[%s;%sm%s\e[0m");
+
+        if ($this->styles->isEmpty()) {
+            $parts->add("\e[%s;%sm%s\e[0m");
+        } else {
+            $styles = $this->styles->toValuesArray();
+            $styleText = implode(';', $styles);
+            $parts->add("\e[%s;%s;%sm%s\e[0m");
+            $parts->add($styleText);
+        }
+
         $parts->add((string) $this->color);
         $parts->add((string) $this->backgroundColor);
         $parts->add($text);
