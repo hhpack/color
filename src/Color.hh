@@ -64,6 +64,11 @@ final class Color
         return new Color(ForegroundColor::DefaultColor, $color);
     }
 
+    public static function fromDefault() : this
+    {
+        return new Color();
+    }
+
     public function format(string $format, ...) : string
     {
         $parts = Set { $format };

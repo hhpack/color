@@ -26,6 +26,6 @@ Color::fromColor(ForegroundColor::White)
     ->addStyle(StyleType::Underlined)
     ->display('bold + underlined');
 
-Color::fromColor(ForegroundColor::White)
+Color::fromDefault()
     ->addStyle(StyleType::Reverse)
     ->display('reverse');
