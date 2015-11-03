@@ -11,7 +11,7 @@
 
 namespace hhpack\color;
 
-enum StyleAttribute : int
+enum StyleType : int
 {
     DefaultStyle = 0;
     Bold = 1;

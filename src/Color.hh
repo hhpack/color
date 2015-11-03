@@ -14,7 +14,7 @@ namespace hhpack\color;
 final class Color
 {
 
-    private Set<StyleAttribute> $styles;
+    private Set<StyleType> $styles;
 
     public function __construct(
         private string $format,
@@ -37,7 +37,7 @@ final class Color
         return $this;
     }
 
-    public function addStyle(StyleAttribute $style) : this
+    public function addStyle(StyleType $style) : this
     {
         $this->styles->add($style);
         return $this;
@@ -81,7 +81,7 @@ final class Color
         $parts->add("\e[%s;%s;%sm%s\e[0m");
 
         if ($this->styles->isEmpty()) {
-            $this->addStyle(StyleAttribute::DefaultStyle);
+            $this->addStyle(StyleType::DefaultStyle);
         }
 
         $styles = $this->styles->toValuesArray();
