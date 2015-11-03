@@ -15,7 +15,7 @@ final class Color
 {
 
     public function __construct(
-        private string $text,
+        private string $format,
         private ForegroundColor $color = ForegroundColor::DefaultColor,
         private BackgroundColor $backgroundColor = BackgroundColor::DefaultColor
     )
@@ -34,36 +34,47 @@ final class Color
         return $this;
     }
 
-    public function text(string $text) : this
+    public function formatText(string $format) : this
     {
-        $this->text = $text;
+        $this->format = $format;
         return $this;
+    }
+
+    public function println(...) : void
+    {
+        $text = call_user_func_array([ $this, 'format' ], func_get_args());
+        fwrite(STDOUT, $text . PHP_EOL);
     }
 
     public function display() : void
     {
-        fwrite(STDOUT, (string) $this);
+        fwrite(STDOUT, $this->format() . PHP_EOL);
     }
 
-    public function println() : void
+    public static function fromFormat(string $format) : this
     {
-        fwrite(STDOUT, (string) $this . PHP_EOL);
+        return new Color($format);
     }
 
-    public static function fromText(string $text) : this
+    public function format(...) : string
     {
-        return new Color($text);
+        $parts = Set { $this->format };
+        $parts->addAll( func_get_args() );
+
+        $text = call_user_func_array('sprintf', $parts->toArray());
+
+        return $this->applyTo($text);
     }
 
-    public function __toString() : string
+    public function applyTo(string $text) : string
     {
         $parts = Set {};
         $parts->add("\e[%s;%sm%s\e[0m");
         $parts->add((string) $this->color);
         $parts->add((string) $this->backgroundColor);
-        $parts->add($this->text);
+        $parts->add($text);
 
-        return call_user_func_Array('sprintf', $parts->toArray());
+        return call_user_func_array('sprintf', $parts->toArray());
     }
 
 }
