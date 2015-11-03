@@ -20,9 +20,9 @@ describe(Color::class, function() {
       it('returns string content', function () {
         $message = Color::fromText('foo')
           ->color(ForegroundColor::Red)
-          ->background(BackgroundColor::Black);
+          ->background(BackgroundColor::White);
 
-        expect((string) $message)->toBe("\e[0;31;40mfoo\e[0m");
+        expect((string) $message)->toBe("\e[0;31;107mfoo\e[0m");
       });
     });
   });
