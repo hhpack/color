@@ -1,4 +1,4 @@
-<?hh // parital
+<?hh // partial
 
 namespace hhpack\color\example;
 
@@ -9,13 +9,13 @@ use hhpack\color\ForegroundColor;
 use hhpack\color\BackgroundColor;
 
 foreach (ForegroundColor::getValues() as $name => $color) {
-    Color::fromText("$name")
+    Color::fromFormat("$name")
         ->color($color)
-        ->println();
+        ->display();
 }
 
 foreach (BackgroundColor::getValues() as $name => $color) {
-    Color::fromText("$name")
+    Color::fromFormat("$name")
         ->background($color)
-        ->println();
+        ->display();
 }
