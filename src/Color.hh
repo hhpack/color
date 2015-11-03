@@ -42,6 +42,12 @@ final class Color
         return $this;
     }
 
+    public function removeStyle(StyleType $style) : this
+    {
+        $this->styles->remove($style);
+        return $this;
+    }
+
     public function println(string $format, ...) : void
     {
         $text = call_user_func_array([ $this, 'format' ], func_get_args());

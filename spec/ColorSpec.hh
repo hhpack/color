@@ -3,10 +3,21 @@
 namespace hhpack\color\spec;
 
 use hhpack\color\Color;
+use hhpack\color\StyleType;
 use hhpack\color\ForegroundColor;
 use hhpack\color\BackgroundColor;
 
 describe(Color::class, function() {
+
+  describe('removeStyle', function() {
+    it('returns formatted string', function () {
+      $message = Color::fromDefault();
+      $message->addStyle(StyleType::Underlined);
+      $message->removeStyle(StyleType::Underlined);
+
+      expect($message->applyTo('bar'))->toBe("\e[0;39;49mbar\e[0m");
+    });
+  });
 
   describe('format', function() {
     it('returns formatted string', function () {
