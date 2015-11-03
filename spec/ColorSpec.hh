@@ -13,7 +13,7 @@ describe(Color::class, function() {
         $message = Color::fromText('foo')
           ->color(ForegroundColor::Red);
 
-        expect((string) $message)->toBe("\e[0;31;49mfoo\e[0m");
+        expect((string) $message)->toBe("\e[31;49mfoo\e[0m");
       });
     });
     context('when background color specified', function () {
@@ -22,7 +22,7 @@ describe(Color::class, function() {
           ->color(ForegroundColor::Red)
           ->background(BackgroundColor::White);
 
-        expect((string) $message)->toBe("\e[0;31;107mfoo\e[0m");
+        expect((string) $message)->toBe("\e[31;107mfoo\e[0m");
       });
     });
   });
