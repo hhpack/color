@@ -31,3 +31,7 @@ Color::fromFormat('bold + underlined')
     ->addStyle(StyleAttribute::Bold)
     ->addStyle(StyleAttribute::Underlined)
     ->display();
+
+Color::fromFormat('reverse')
+    ->addStyle(StyleAttribute::Reverse)
+    ->display();
