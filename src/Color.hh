@@ -33,7 +33,7 @@ final class Color
         return $this;
     }
 
-    public function display() : this
+    public function display() : void
     {
         fwrite(STDOUT, (string) $this);
     }
