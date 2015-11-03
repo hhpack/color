@@ -45,6 +45,11 @@ final class Color
         fwrite(STDOUT, (string) $this);
     }
 
+    public function println() : void
+    {
+        fwrite(STDOUT, (string) $this . PHP_EOL);
+    }
+
     public static function fromText(string $text) : this
     {
         return new Color($text);
