@@ -11,11 +11,37 @@ color
 Basic usage
 ------------------------------------------------
 
+The user can output to stdout by specifying the color.
+
 ```hack
-Color::fromFormat('%s succeeded.')
-    ->color(ForegroundColor::White)
+Color::fromColor(ForegroundColor::White)
     ->background(BackgroundColor::Green)
-    ->println('Color package example');
+    ->println('%s succeeded.', 'Color package example');
+```
+
+Applying styles
+------------------------------------------------
+
+The user can use the **applyTo** method in order to apply a style to text.
+
+```hack
+$text = Color::fromColor(ForegroundColor::White)
+    ->background(BackgroundColor::Green)
+    ->applyTo('target text');
+
+echo $text;
+```
+
+Custom style for text
+------------------------------------------------
+
+The user can pull the bold and underline.
+
+```hack
+Color::fromColor(ForegroundColor::White)
+    ->addStyle(StyleType::Bold)
+    ->addStyle(StyleType::Underlined)
+    ->println('%s + %s', 'bold', 'underlined');
 ```
 
 Run the test

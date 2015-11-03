@@ -17,7 +17,6 @@ final class Color
     private Set<StyleType> $styles;
 
     public function __construct(
-        private string $format,
         private ForegroundColor $color = ForegroundColor::DefaultColor,
         private BackgroundColor $backgroundColor = BackgroundColor::DefaultColor
     )
@@ -43,31 +42,42 @@ final class Color
         return $this;
     }
 
-    public function formatText(string $format) : this
+    public function removeStyle(StyleType $style) : this
     {
-        $this->format = $format;
+        $this->styles->remove($style);
         return $this;
     }
 
-    public function println(...) : void
+    public function println(string $format, ...) : void
     {
         $text = call_user_func_array([ $this, 'format' ], func_get_args());
         fwrite(STDOUT, $text . PHP_EOL);
     }
 
-    public function display() : void
+    public function display(string $format, ...) : void
     {
-        fwrite(STDOUT, $this->format());
+        $text = call_user_func_array([ $this, 'format' ], func_get_args());
+        fwrite(STDOUT, $text);
     }
 
-    public static function fromFormat(string $format) : this
+    public static function fromColor(ForegroundColor $color) : this
     {
-        return new Color($format);
+        return new Color($color);
     }
 
-    public function format(...) : string
+    public static function fromBackground(BackgroundColor $color) : this
     {
-        $parts = Set { $this->format };
+        return new Color(ForegroundColor::DefaultColor, $color);
+    }
+
+    public static function fromDefault() : this
+    {
+        return new Color();
+    }
+
+    public function format(string $format, ...) : string
+    {
+        $parts = Set { $format };
         $parts->addAll( func_get_args() );
 
         $text = call_user_func_array('sprintf', $parts->toArray());
