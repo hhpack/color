@@ -13,7 +13,7 @@ namespace hhpack\color;
 
 enum BackgroundColor : int
 {
-    Default = 49;
+    DefaultColor = 49;
     Black = 40;
     Red = 41;
     Green = 42;

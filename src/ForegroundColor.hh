@@ -13,6 +13,7 @@ namespace hhpack\color;
 
 enum ForegroundColor : string
 {
+    DefaultColor = '39';
     Black = '0;30';
     Red = '0;31';
     Green = '0;32';

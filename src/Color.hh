@@ -16,8 +16,8 @@ final class Color
 
     public function __construct(
         private string $text,
-        private ForegroundColor $color = ForegroundColor::White,
-        private BackgroundColor $backgroundColor = BackgroundColor::Default
+        private ForegroundColor $color = ForegroundColor::DefaultColor,
+        private BackgroundColor $backgroundColor = BackgroundColor::DefaultColor
     )
     {
     }
@@ -52,7 +52,13 @@ final class Color
 
     public function __toString() : string
     {
-        return "\e[" . (string) $this->color . "m" . $this->text . "\e[0m";
+        $parts = Set {};
+        $parts->add("\e[%s;%sm%s\e[0m");
+        $parts->add((string) $this->color);
+        $parts->add((string) $this->backgroundColor);
+        $parts->add($this->text);
+
+        return call_user_func_Array('sprintf', $parts->toArray());
     }
 
 }
