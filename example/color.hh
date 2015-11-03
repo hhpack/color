@@ -19,3 +19,8 @@ foreach (BackgroundColor::getValues() as $name => $color) {
         ->background($color)
         ->display();
 }
+
+Color::fromFormat('%s succeeded.')
+    ->color(ForegroundColor::White)
+    ->background(BackgroundColor::Green)
+    ->println('Color package example');
