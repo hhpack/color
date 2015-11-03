@@ -13,6 +13,7 @@ namespace hhpack\color;
 
 enum StyleAttribute : int
 {
+    DefaultStyle = 0;
     Bold = 1;
     Dim = 2;
     Underlined = 4;
