@@ -13,7 +13,7 @@ describe(Color::class, function() {
       $message = Color::fromFormat('%s %s')
         ->color(ForegroundColor::Red);
 
-      expect($message->format('foo', 'bar'))->toBe("\e[31;49mfoo bar\e[0m");
+      expect($message->format('foo', 'bar'))->toBe("\e[0;31;49mfoo bar\e[0m");
     });
   });
 
@@ -23,7 +23,7 @@ describe(Color::class, function() {
         $message = Color::fromFormat('foo')
           ->color(ForegroundColor::Red);
 
-        expect($message->format())->toBe("\e[31;49mfoo\e[0m");
+        expect($message->format())->toBe("\e[0;31;49mfoo\e[0m");
       });
     });
     context('when background color specified', function () {
@@ -32,7 +32,7 @@ describe(Color::class, function() {
           ->color(ForegroundColor::Red)
           ->background(BackgroundColor::White);
 
-        expect($message->format())->toBe("\e[31;107mfoo\e[0m");
+        expect($message->format())->toBe("\e[0;31;107mfoo\e[0m");
       });
     });
   });

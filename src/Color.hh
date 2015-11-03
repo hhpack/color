@@ -78,15 +78,15 @@ final class Color
     public function applyTo(string $text) : string
     {
         $parts = Set {};
+        $parts->add("\e[%s;%s;%sm%s\e[0m");
 
         if ($this->styles->isEmpty()) {
-            $parts->add("\e[%s;%sm%s\e[0m");
-        } else {
-            $styles = $this->styles->toValuesArray();
-            $styleText = implode(';', $styles);
-            $parts->add("\e[%s;%s;%sm%s\e[0m");
-            $parts->add($styleText);
+            $this->addStyle(StyleAttribute::DefaultStyle);
         }
+
+        $styles = $this->styles->toValuesArray();
+        $styleText = implode(';', $styles);
+        $parts->add($styleText);
 
         $parts->add((string) $this->color);
         $parts->add((string) $this->backgroundColor);
