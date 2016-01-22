@@ -50,13 +50,13 @@ final class Color
 
     public function println(string $format, ...) : void
     {
-        $text = call_user_func_array([ $this, 'format' ], func_get_args());
+        $text = call_user_func_array(inst_meth($this, 'format'), func_get_args());
         fwrite(STDOUT, $text . PHP_EOL);
     }
 
     public function display(string $format, ...) : void
     {
-        $text = call_user_func_array([ $this, 'format' ], func_get_args());
+        $text = call_user_func_array(inst_meth($this, 'format'), func_get_args());
         fwrite(STDOUT, $text);
     }
 
