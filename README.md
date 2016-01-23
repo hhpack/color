@@ -19,6 +19,14 @@ Color::fromColor(ForegroundColor::White)
     ->println('%s succeeded.', 'Color package example');
 ```
 
+or 
+
+```hack
+$color = Color::fromColor(ForegroundColor::White)
+    ->background(BackgroundColor::Green);
+$color('%s succeeded.', 'Color package example');
+```
+
 Applying styles
 ------------------------------------------------
 
