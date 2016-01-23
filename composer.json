@@ -20,7 +20,8 @@
   "autoload": {
     "psr-4": {
       "hhpack\\color\\": "src/"
-    }
+    },
+    "files": [ "src/shortcut.hh" ]
   },
   "scripts": {
     "test": "vendor/bin/peridot --grep *Spec.hh -c peridot.hh spec",
