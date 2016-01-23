@@ -50,13 +50,13 @@ final class Color
 
     public function println(string $format, ...) : void
     {
-        $text = call_user_func_array([ $this, 'format' ], func_get_args());
+        $text = call_user_func_array(inst_meth($this, 'format'), func_get_args());
         fwrite(STDOUT, $text . PHP_EOL);
     }
 
     public function display(string $format, ...) : void
     {
-        $text = call_user_func_array([ $this, 'format' ], func_get_args());
+        $text = call_user_func_array(inst_meth($this, 'format'), func_get_args());
         fwrite(STDOUT, $text);
     }
 
@@ -87,22 +87,20 @@ final class Color
 
     public function applyTo(string $text) : string
     {
-        $parts = Set {};
-        $parts->add("\e[%s;%s;%sm%s\e[0m");
+        $styles = Set {};
 
         if ($this->styles->isEmpty()) {
             $this->addStyle(StyleType::DefaultStyle);
         }
 
-        $styles = $this->styles->toValuesArray();
-        $styleText = implode(';', $styles);
-        $parts->add($styleText);
+        $styles->addAll($this->styles);
 
-        $parts->add((string) $this->color);
-        $parts->add((string) $this->backgroundColor);
-        $parts->add($text);
+        $styles->add((string) $this->color);
+        $styles->add((string) $this->backgroundColor);
 
-        return call_user_func_array('sprintf', $parts->toArray());
+        $styleText = implode(';', $styles->toValuesArray());
+
+        return sprintf("\e[%sm%s\e[0m", $styleText, $text);
     }
 
 }

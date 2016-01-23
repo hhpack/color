@@ -6,5 +6,6 @@ from sys import exit
 PROGRAM = 'hh_client'
 
 if __name__ == '__main__':
+  call([ 'touch', '.hhconfig' ])
   call([ PROGRAM, 'restart' ])
   exit( call([ PROGRAM, 'check' ]) )
