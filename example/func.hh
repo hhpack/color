@@ -12,7 +12,7 @@ use hhpack\color\StyleType;
 
 function color_func_main() : void
 {
-    console\error("%s", "info");
+    console\error("%s", "error");
     console\warn("%s", "warning");
     console\info("%s", "info");
     console\debug("%s", "debug");

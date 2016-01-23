@@ -75,6 +75,11 @@ final class Color
         return new Color();
     }
 
+    public final function __invoke(string $format, ...) : void
+    {
+        call_user_func_array(inst_meth($this, 'println'), func_get_args());
+    }
+
     public function format(string $format, ...) : string
     {
         $parts = Set { $format };
