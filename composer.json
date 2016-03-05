@@ -15,7 +15,8 @@
   "require-dev": {
     "expect/peridot-expect-plugin": "~3.0",
     "peridot-php/peridot": "~1.17",
-    "peridot-php/peridot-dot-reporter": "~1.0"
+    "peridot-php/peridot-dot-reporter": "~1.0",
+    "hackpack/hackunit": "^0.5.3"
   },
   "autoload": {
     "psr-4": {
