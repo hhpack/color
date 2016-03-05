@@ -2,6 +2,10 @@
 indent_style = space
 indent_size = 4
 
+[test/**/*.hh]
+indent_style = space
+indent_size = 4
+
 [spec/**/*Spec.hh]
 indent_style = space
 indent_size = 2
