@@ -82,7 +82,7 @@ final class Color
 
     public function format(string $format, ...) : string
     {
-        $parts = Set { $format };
+        $parts = Vector {};
         $parts->addAll( func_get_args() );
 
         $text = call_user_func_array('sprintf', $parts->toArray());

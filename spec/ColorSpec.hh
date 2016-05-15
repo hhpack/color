@@ -20,9 +20,17 @@ describe(Color::class, function() {
   });
 
   describe('format', function() {
-    it('returns formatted string', function () {
-      $message = Color::fromColor(ForegroundColor::Red);
-      expect($message->format('%s %s', 'foo', 'bar'))->toBe("\e[0;31;49mfoo bar\e[0m");
+    context('when string', function () {
+      it('returns formatted string', function () {
+        $message = Color::fromColor(ForegroundColor::Red);
+        expect($message->format('%s %s', 'foo', 'bar'))->toBe("\e[0;31;49mfoo bar\e[0m");
+      });
+    });
+    context('when float', function () {
+      it('returns formatted string', function () {
+        $message = Color::fromColor(ForegroundColor::Red);
+        expect($message->format('%2.1f %2.1f', 10.0, 20.0))->toBe("\e[0;31;49m10.0 20.0\e[0m");
+      });
     });
   });
 
