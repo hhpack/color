@@ -17,7 +17,7 @@
   },
   "autoload": {
     "psr-4": {
-      "hhpack\\color\\": "src/"
+      "HHPack\\Color\\": "src/"
     },
     "files": [ "src/shortcut.hh" ]
   },

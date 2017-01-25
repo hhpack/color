@@ -1,11 +1,11 @@
 <?hh //strict
 
-namespace hhpack\color\test;
+namespace HHPack\Color\test;
 
-use hhpack\color\Color;
-use hhpack\color\StyleType;
-use hhpack\color\ForegroundColor;
-use hhpack\color\BackgroundColor;
+use HHPack\Color\Color;
+use HHPack\Color\StyleType;
+use HHPack\Color\ForegroundColor;
+use HHPack\Color\BackgroundColor;
 use HackPack\HackUnit\Contract\Assert;
 
 final class ColorTest

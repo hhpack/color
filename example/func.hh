@@ -1,14 +1,14 @@
 <?hh // partial
 
-namespace hhpack\color\example;
+namespace HHPack\Color\Example;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use hhpack\color as console;
-use hhpack\color\Color;
-use hhpack\color\ForegroundColor;
-use hhpack\color\BackgroundColor;
-use hhpack\color\StyleType;
+use HHPack\Color as console;
+use HHPack\Color\Color;
+use HHPack\Color\ForegroundColor;
+use HHPack\Color\BackgroundColor;
+use HHPack\Color\StyleType;
 
 function color_func_main() : void
 {
