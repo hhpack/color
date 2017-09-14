@@ -11,32 +11,27 @@
 
 namespace HHPack\Color;
 
-function error(string $format, ...) : void
-{
-    $color = Color::fromColor(ForegroundColor::Red);
-    call_user_func_array($color, func_get_args());
+function error(string $format, ...): void {
+  $color = Color::fromColor(ForegroundColor::Red);
+  call_user_func_array($color, func_get_args());
 }
 
-function info(string $format, ...) : void
-{
-    $color = Color::fromColor(ForegroundColor::Cyan);
-    call_user_func_array($color, func_get_args());
+function info(string $format, ...): void {
+  $color = Color::fromColor(ForegroundColor::Cyan);
+  call_user_func_array($color, func_get_args());
 }
 
-function warn(string $format, ...) : void
-{
-    $color = Color::fromColor(ForegroundColor::Yellow);
-    call_user_func_array($color, func_get_args());
+function warn(string $format, ...): void {
+  $color = Color::fromColor(ForegroundColor::Yellow);
+  call_user_func_array($color, func_get_args());
 }
 
-function debug(string $format, ...) : void
-{
-    $color = Color::fromColor(ForegroundColor::DarkGray);
-    call_user_func_array($color, func_get_args());
+function debug(string $format, ...): void {
+  $color = Color::fromColor(ForegroundColor::DarkGray);
+  call_user_func_array($color, func_get_args());
 }
 
-function log(string $format, ...) : void
-{
-    $color = Color::fromColor(ForegroundColor::DefaultColor);
-    call_user_func_array($color, func_get_args());
+function log(string $format, ...): void {
+  $color = Color::fromColor(ForegroundColor::DefaultColor);
+  call_user_func_array($color, func_get_args());
 }
