@@ -43,13 +43,13 @@ final class Color {
   }
 
   public function println(string $format, ...): void {
-    $text = call_user_func_array(inst_meth($this, 'format'), func_get_args());
-    fwrite(STDOUT, $text.PHP_EOL);
+    $text = \call_user_func_array(inst_meth($this, 'format'), \func_get_args());
+    \fwrite(\STDOUT, $text.\PHP_EOL);
   }
 
   public function display(string $format, ...): void {
-    $text = call_user_func_array(inst_meth($this, 'format'), func_get_args());
-    fwrite(STDOUT, $text);
+    $text = \call_user_func_array(inst_meth($this, 'format'), \func_get_args());
+    \fwrite(\STDOUT, $text);
   }
 
   public static function fromColor(ForegroundColor $color): this {
@@ -65,14 +65,14 @@ final class Color {
   }
 
   public final function __invoke(string $format, ...): void {
-    call_user_func_array(inst_meth($this, 'println'), func_get_args());
+    \call_user_func_array(inst_meth($this, 'println'), \func_get_args());
   }
 
   public function format(string $format, ...): string {
     $parts = Vector {};
-    $parts->addAll(func_get_args());
+    $parts->addAll(\func_get_args());
 
-    $text = call_user_func_array('sprintf', $parts->toArray());
+    $text = \call_user_func_array('sprintf', $parts->toArray());
 
     return $this->applyTo($text);
   }
@@ -89,9 +89,9 @@ final class Color {
     $styles->add((string) $this->color);
     $styles->add((string) $this->backgroundColor);
 
-    $styleText = implode(';', $styles->toValuesArray());
+    $styleText = \implode(';', $styles->toValuesArray());
 
-    return sprintf("\e[%sm%s\e[0m", $styleText, $text);
+    return \sprintf("\e[%sm%s\e[0m", $styleText, $text);
   }
 
 }
