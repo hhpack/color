@@ -2,40 +2,40 @@
 
 namespace HHPack\Color\Test;
 
-use HHPack\Color\{Color, StyleType, ForegroundColor, BackgroundColor};
-use HackPack\HackUnit\Contract\Assert;
+//use namespace HHPack\Color\Test;
 
-final class ColorTest {
+use type HHPack\Color\{Color, StyleType, ForegroundColor, BackgroundColor};
+use type Facebook\HackTest\HackTest;
+use function Facebook\FBExpect\expect;
 
-  <<Test>>
-  public function addStyleAndRemoveStyle(Assert $assert): void {
+
+final class ColorTest extends HackTest {
+  public function testAddStyleAndRemoveStyle(): void {
     $message = Color::fromDefault();
     $message->addStyle(StyleType::Underlined);
     $message->removeStyle(StyleType::Underlined);
 
-    $assert->string($message->applyTo('bar'))->is("\e[0;39;49mbar\e[0m");
+    expect($message->applyTo('bar'))->toBeSame("\e[0;39;49mbar\e[0m");
   }
 
-  <<Test>>
-  public function format(Assert $assert): void {
+  public function testFormat(): void {
     $message = Color::fromColor(ForegroundColor::Red);
-    $assert->string($message->format('%s %s', 'foo', 'bar'))
-      ->is("\e[0;31;49mfoo bar\e[0m");
+
+    expect($message->format('%s %s', 'foo', 'bar'))->toBeSame("\e[0;31;49mfoo bar\e[0m");
   }
 
-  <<Test>>
-  public function foregroundColor(Assert $assert): void {
+  public function testForegroundColor(): void {
     $message = Color::fromColor(ForegroundColor::Red);
-    $assert->string($message->applyTo('foo'))->is("\e[0;31;49mfoo\e[0m");
+
+    expect($message->applyTo('foo'))->toBeSame("\e[0;31;49mfoo\e[0m");
   }
 
-  <<Test>>
-  public function backgroundColor(Assert $assert): void {
+  public function testBackgroundColor(): void {
     $message =
       Color::fromColor(ForegroundColor::Red)
         ->background(BackgroundColor::White);
 
-    $assert->string($message->applyTo('foo'))->is("\e[0;31;107mfoo\e[0m");
+    expect($message->applyTo('foo'))->toBeSame("\e[0;31;107mfoo\e[0m");
   }
 
 }
