@@ -1,15 +1,14 @@
-<?hh // partial
-
 namespace HHPack\Color\example;
 
-require_once __DIR__.'/../vendor/autoload.php';
+require_once __DIR__.'/../vendor/hh_autoload.hh';
 
 use HHPack\Color\Color;
 use HHPack\Color\ForegroundColor;
 use HHPack\Color\BackgroundColor;
 use HHPack\Color\StyleType;
 
-function color_main(): void {
+<<__EntryPoint>>
+function main(): noreturn {
   foreach (ForegroundColor::getValues() as $name => $color) {
     Color::fromColor($color)->display($name);
   }
@@ -28,5 +27,6 @@ function color_main(): void {
     ->display('bold + underlined');
 
   Color::fromDefault()->addStyle(StyleType::Reverse)->display('reverse');
+
+  exit(0);
 }
-color_main();
