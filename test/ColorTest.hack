@@ -1,13 +1,8 @@
-<?hh //strict
-
 namespace HHPack\Color\Test;
-
-//use namespace HHPack\Color\Test;
 
 use type HHPack\Color\{Color, StyleType, ForegroundColor, BackgroundColor};
 use type Facebook\HackTest\HackTest;
 use function Facebook\FBExpect\expect;
-
 
 final class ColorTest extends HackTest {
   public function testAddStyleAndRemoveStyle(): void {
@@ -21,7 +16,9 @@ final class ColorTest extends HackTest {
   public function testFormat(): void {
     $message = Color::fromColor(ForegroundColor::Red);
 
-    expect($message->format('%s %s', 'foo', 'bar'))->toBeSame("\e[0;31;49mfoo bar\e[0m");
+    expect($message->format('%s %s', 'foo', 'bar'))->toBeSame(
+      "\e[0;31;49mfoo bar\e[0m",
+    );
   }
 
   public function testForegroundColor(): void {
@@ -31,11 +28,9 @@ final class ColorTest extends HackTest {
   }
 
   public function testBackgroundColor(): void {
-    $message =
-      Color::fromColor(ForegroundColor::Red)
-        ->background(BackgroundColor::White);
+    $message = Color::fromColor(ForegroundColor::Red)
+      ->background(BackgroundColor::White);
 
     expect($message->applyTo('foo'))->toBeSame("\e[0;31;107mfoo\e[0m");
   }
-
 }

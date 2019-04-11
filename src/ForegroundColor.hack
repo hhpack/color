@@ -1,5 +1,3 @@
-<?hh //strict
-
 /**
  * This file is part of HHPack\Color.
  *
@@ -11,7 +9,7 @@
 
 namespace HHPack\Color;
 
-enum ForegroundColor : int {
+enum ForegroundColor: int {
   DefaultColor = 39;
   Black = 30;
   Red = 31;

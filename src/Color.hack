@@ -1,5 +1,3 @@
-<?hh //strict
-
 /**
  * This file is part of HHPack\Color.
  *
@@ -10,6 +8,8 @@
  */
 
 namespace HHPack\Color;
+
+use function HH\Lib\Vec\{concat};
 
 final class Color {
 
@@ -42,13 +42,19 @@ final class Color {
     return $this;
   }
 
-  public function println(string $format, ...): void {
-    $text = \call_user_func_array(inst_meth($this, 'format'), \func_get_args());
+  public function println(string $format, mixed ...$params): void {
+    $text = \call_user_func_array(
+      inst_meth($this, 'format'),
+      concat([$format], $params),
+    );
     \fwrite(\STDOUT, $text.\PHP_EOL);
   }
 
-  public function display(string $format, ...): void {
-    $text = \call_user_func_array(inst_meth($this, 'format'), \func_get_args());
+  public function display(string $format, mixed ...$params): void {
+    $text = \call_user_func_array(
+      inst_meth($this, 'format'),
+      concat([$format], $params),
+    );
     \fwrite(\STDOUT, $text);
   }
 
@@ -64,16 +70,15 @@ final class Color {
     return new Color();
   }
 
-  public final function __invoke(string $format, ...): void {
-    \call_user_func_array(inst_meth($this, 'println'), \func_get_args());
+  public final function __invoke(string $format, mixed ...$params): void {
+    \call_user_func_array(
+      inst_meth($this, 'println'),
+      concat([$format], $params),
+    );
   }
 
-  public function format(string $format, ...): string {
-    $parts = Vector {};
-    $parts->addAll(\func_get_args());
-
-    $text = \call_user_func_array('sprintf', $parts->toArray());
-
+  public function format(string $format, mixed ...$params): string {
+    $text = \vsprintf($format, $params);
     return $this->applyTo($text);
   }
 
@@ -86,8 +91,8 @@ final class Color {
 
     $styles->addAll($this->styles);
 
-    $styles->add((string) $this->color);
-    $styles->add((string) $this->backgroundColor);
+    $styles->add((string)$this->color);
+    $styles->add((string)$this->backgroundColor);
 
     $styleText = \implode(';', $styles->toValuesArray());
 

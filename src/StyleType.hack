@@ -1,5 +1,3 @@
-<?hh //strict
-
 /**
  * This file is part of HHPack\Color.
  *
@@ -11,7 +9,7 @@
 
 namespace HHPack\Color;
 
-enum StyleType : int {
+enum StyleType: int {
   DefaultStyle = 0;
   Bold = 1;
   Dim = 2;
